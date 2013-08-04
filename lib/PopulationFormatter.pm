@@ -53,8 +53,10 @@ sub printRaces {
 
     $content .= "<ul> \n";
     foreach my $race ( reverse sort { $a->{'percent'} <=> $b->{'percent'} } @{ $city->{'races'} } ) {
-        $content
-            .= "<li style='margin-left:200px;'>$race->{'population'} ".PL_N($race->{'race'}, $race->{'population'})." ($race->{'percent'}%) </li> \n";
+        if ($race->{'population'} > 0) {
+            $content
+                .= "<li style='margin-left:200px;'>$race->{'population'} ".PL_N($race->{'race'}, $race->{'population'})." ($race->{'percent'}%) </li> \n";
+        }
     }
     $content .= "</ul>";
 

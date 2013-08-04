@@ -95,7 +95,9 @@ sub printRacialBreakdown {
     my $content = "                    <h3>Racial Breakdown</h3>\n";
     $content .= "                    <ul>\n";
     foreach my $race ( sort { $b->{'population'} <=> $a->{'population'} } @{ $city->{'races'} } ) {
-        $content .= "                        <li>$race->{'population'} $race->{'race'} ($race->{'percent'}\%)</li>\n"
+        if ($race->{'population'} > 0) {
+            $content .= "                        <li>$race->{'population'} $race->{'race'} ($race->{'percent'}\%)</li>\n"
+        }
 
     }
     $content .= "                    </ul>\n";
